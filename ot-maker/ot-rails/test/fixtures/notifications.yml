@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  work_order_id: 
+  detail: MyString
+  status: MyString
+  notification_type_id: 
+
+two:
+  user_id: 
+  work_order_id: 
+  detail: MyString
+  status: MyString
+  notification_type_id: 

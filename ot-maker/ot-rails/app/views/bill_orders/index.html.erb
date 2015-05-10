@@ -1,0 +1,40 @@
+<h1>Listing bill_orders</h1>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-heading panel-heading-toolbox">
+    <div class="panel-toolbar">
+      <%= link_to new_bill_order_path, class: "btn btn-primary", data: { tooltip: 'tooltip' }, title: "New Bill order" do %>
+        <span class="glyphicon glyphicon-plus"></span>
+      <% end %>
+    </div>    
+  </div>
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+                      <th>Folio</th>
+                      <th>Issued</th>
+                      <th>Status</th>
+                  </tr>
+      </thead>
+
+      <tbody>
+        <% @bill_orders.each do |bill_order| %>
+          <tr>
+                              <td><%= bill_order.folio %></td>
+                              <td><%= bill_order.issued %></td>
+                              <td><%= bill_order.status %></td>
+                      </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer panel-footer-toolbox">
+    <div class="panel-toolbar">
+      <%= will_paginate @bill_orders, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+
+<br>

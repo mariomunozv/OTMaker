@@ -1,0 +1,18 @@
+<h1>Editing bill_order</h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', bill_orders_path, :class => "btn btn-link" %>
+			<%= link_to @bill_order, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+	          	<span class="glyphicon glyphicon-trash"></span>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+
+		<%= render 'form' %>
+
+	</div>
+</div>

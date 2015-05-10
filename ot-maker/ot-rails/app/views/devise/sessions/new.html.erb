@@ -1,0 +1,42 @@
+<div class="container">
+<div class="row homepage">
+	<div class="col-md-8">
+			<br><br><!--TRUCO SUCIO-->
+		<%= image_tag("ot-maker-logo-color-login.png", :class => "img-responsive") %>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Iniciar sesión</div>
+			<div class="panel-body">
+				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+				<div class="form-group">
+					<%= f.label :email %>
+					<%= f.email_field :email, :autofocus => true, :class => "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :password %>
+					<%= f.password_field :password, :class => "form-control" %>
+				</div>
+				<div class="clearfix">
+					<%= f.submit "Ingresar", :class => "btn btn-success float-right" %>
+					<% if devise_mapping.rememberable? -%>
+						<div>
+							<%= f.check_box :remember_me %> <%= f.label 'Recordarme?' %>
+						</div>
+					<% end -%>
+				</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="text-center">
+		<%= render "devise/shared/links" %>		
+		</div>
+	</div>
+</div>
+</div>
+
+	
+
+
+
+	

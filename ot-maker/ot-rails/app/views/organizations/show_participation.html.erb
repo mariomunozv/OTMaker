@@ -1,0 +1,40 @@
+<h1>Detalle del Grupo</h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', organizations_path, :class => "btn btn-link" %>
+			<%= link_to edit_organization_path(@organization), data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Edit" do %>
+	          	<span class="glyphicon glyphicon-pencil"></span>
+	        <% end %>
+			<%= link_to @organization, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+	          	<span class="glyphicon glyphicon-trash"></span>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+				  <th>Name:</th>
+				  <td><%= @organization.name %></td>
+				</tr>
+				<tr>
+				  <th>Address:</th>
+				  <td><%= @organization.address %></td>
+				</tr>
+				<tr>
+				  <th>Phone:</th>
+				  <td><%= @organization.phone %></td>
+				</tr>
+				<tr>
+					<th>User:</th>
+					<td><%= @organization.user.name %></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</div>

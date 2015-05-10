@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>OT-Maker</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+	
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "select2", "data-turbolinks-track" => true %>
+	<%= stylesheet_link_tag    "select2", media: "all", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/index/home">
+						<img src="/img/logo-white.png" alt="">
+					</a>
+					<a id="menu-toggle" href="#"><span class="glyphicon glyphicon-th-list"></span></a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							<%= link_to "Inicio", index_home_path %>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="notifications">
+							<%= link_to notifications_path do %>
+								<i class="fa fa-bell"></i> Notificaciones
+							<% end %>
+							<div class="count">8</div>
+						</li>
+						<li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div id="header-ghost"></div>
+
+		<div id="sidebar-wrapper">
+			<div class="profile text-center">
+				<div class="row">
+					<div class="col-xs-6 col-xs-offset-3">
+						<%= image_tag current_user.avatar.url(:avatar), :class => "profile-photo" %>
+					</div>
+				</div>
+				<div class="title">
+					<h4><%= current_user.name %></h4>
+					<small>Ultima vez <%= current_user.last_sign_in_at.strftime('%d-%m-%Y') %></small>
+				</div>
+			</div>
+
+			<ul class="sidebar-nav">
+				<li>
+					<%= link_to current_user_path do %>
+						<span class="glyphicon glyphicon-user"></span>Mi perfil
+					<% end %>
+				</li>
+                <li>
+					<%= link_to organizations_path do %>
+					    <span class="fa fa-users"></span>Grupos
+					<% end %>
+				</li>
+                <li>
+					<%= link_to work_orders_path do %>
+					    <span class="glyphicon glyphicon-briefcase"></span>Órdenes
+					<% end %>
+				</li>
+				<li>
+					<%= link_to participations_path do %>
+					    <span class="glyphicon glyphicon-ok"></span>Invitaciones
+					<% end %>
+				</li>
+				<li>
+					<%= link_to bill_orders_path do %>
+					    <span class="glyphicon glyphicon-usd"></span>Facturas
+					<% end %>
+				</li>
+            </ul>
+		</div>
+
+		<div id="page-content-wrapper">
+			<ol class="breadcrumb">
+				<%= render_breadcrumbs :tag => :li, :separator => "" %>
+			</ol>
+			<%= render "layouts/notice" %>
+			<%= yield %>
+		</div>
+
+		<div id="footer-ghost"></div>
+		<div id="footer">
+			<div class="row">
+				<div class="col-xs-4">
+					OT-Maker v1.0
+				</div>
+				<div class="col-xs-4 text-center">
+					<img class="logo-requies" src="/img/requies/requies-black-48x48.png" alt="">
+				</div>
+				<div class="col-xs-4 text-right">
+					<a href="http://www.requies.cl/">Requies</a>, 2015
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/js/bootstrap/transition.js"></script>
+    <script src="/js/bootstrap/alert.js"></script>
+    <script src="/js/bootstrap/button.js"></script>
+    <script src="/js/bootstrap/carousel.js"></script>
+    <script src="/js/bootstrap/collapse.js"></script>
+    <script src="/js/bootstrap/dropdown.js"></script>
+    <script src="/js/bootstrap/modal.js"></script>
+    <script src="/js/bootstrap/tooltip.js"></script>
+    <script src="/js/bootstrap/popover.js"></script>
+    <script src="/js/bootstrap/scrollspy.js"></script>
+    <script src="/js/bootstrap/tab.js"></script>
+    <script src="/js/bootstrap/affix.js"></script>
+
+    <script type="text/javascript">
+    	$('.dropdown-toggle').dropdown()
+    	if("<%= params[:controller] %>" == "index"){
+    		$(".sidebar-nav a[href='/index/home']").addClass("active");
+    	}else{
+	    	if("<%= params[:controller] %>" == "devise/registrations"){
+	    		$(".sidebar-nav a[href='/edit']").addClass("active");
+	    	}else{
+	    		$(".sidebar-nav a[href='/<%= params[:controller] %>']").addClass("active");
+	    	}
+	    }
+    		
+    	// Sidebar toggle
+    	$("#menu-toggle").click(function(e) {
+	        e.preventDefault()
+	        $("#wrapper").toggleClass("active")
+	    });
+    </script>
+    <%= yield :script %>
+</body>
+</html>

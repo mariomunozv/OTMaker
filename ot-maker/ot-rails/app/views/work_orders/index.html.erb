@@ -1,0 +1,181 @@
+<h1>Listado de Ordenes de Trabajo</h1>
+<hr>
+<br>
+<%= link_to "Ver ordenes de trabajo pendientes", work_orders_pending_path, :class => "btn-lg btn btn-info" %>
+<br>
+<br>
+<br>
+<div class="panel panel-default">
+  <div class="panel-heading panel-heading-toolbox">
+    <div class="panel-title">
+        Ordenes Asignadas
+    </div>
+  </div>
+  <div class="panel-body">
+    <table class="table table-hover table-bordered">
+
+      <thead>
+        <tr>
+          <th class="text-center" colspan=4>General</th>
+          <th class="text-center" colspan=2>Solicitante</th>
+          <th class="text-center" colspan=2>Solicitado</th>
+
+        </tr>
+        <tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+
+            <th>Usuario</th>
+            <th>Organización</th>
+
+            <th>Usuario</th>
+            <th>Organización</th>
+            <th>Factura</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @assigned_work_orders.each do |work_order| %>
+          <% if work_order.state == 1 %>
+            <tr class="warning">
+          <% elsif work_order.state == 3 %>
+            <tr class="info">
+          <% elsif work_order.state == 4 %>
+            <tr class="success">
+          <% elsif work_order.state == 6 %>
+            <tr class="danger">
+          <% end %>
+              <td><%= link_to work_order.code, work_order_path(work_order) %></td>
+              <td><%= work_order.title %></td>
+              <td><%= work_order.description %></td>
+              <td>
+                <%= work_order.show_state  %>
+              </td>
+
+              <td>
+                <% if work_order.user %>
+                  <%= work_order.user.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if work_order.organization %>
+                  <%= work_order.organization.name %>
+                <% end %>
+              </td>
+
+              <td>
+                <% if work_order.user_assigned %>
+                  <%= work_order.user_assigned.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if work_order.organization_assigned %>
+                  <%= work_order.organization_assigned.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if work_order.bill_order %>
+                  <%= link_to work_order.bill_order.folio, bill_order_path(work_order.bill_order) %>
+                <% else %>
+                  No Facturada
+                <% end %>
+              </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer panel-footer-toolbox">
+    <div class="panel-toolbar">
+      <%= will_paginate @assigned_work_orders, :param_name => 'pa',renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading panel-heading-toolbox">
+    <div class="panel-title">
+        Ordenes Ingresadas
+    </div>
+    <div class="panel-toolbar">
+      <%= link_to new_work_order_path, class: "btn btn-primary", data: { tooltip: 'tooltip' }, title: "New Work order" do %>
+        <span class="glyphicon glyphicon-plus"></span>
+      <% end %>
+    </div>    
+  </div>
+  <div class="panel-body">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center" colspan=4>General</th>
+          <th class="text-center" colspan=2>Solicitante</th>
+          <th class="text-center" colspan=2>Solicitado</th>
+
+        </tr>
+        <tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+
+            <th>Usuario</th>
+            <th>Grupo</th>
+
+            <th>Usuario</th>
+            <th>Organización</th>
+            <th>Factura</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @own_work_orders.each do |work_order| %>
+          <tr>
+              <td><%= link_to work_order.code, work_order_path(work_order) %></td>
+              <td><%= work_order.title %></td>
+              <td><%= work_order.description %></td>
+              <td>
+                <%= work_order.show_state %>
+              </td>
+
+              <td>
+                <% if work_order.user %>
+                  <%= work_order.user.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if work_order.organization %>
+                  <%= work_order.organization.name %>
+                <% end %>
+              </td>
+
+              <td>
+                <% if work_order.user_assigned %>
+                  <%= work_order.user_assigned.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if work_order.organization_assigned %>
+                  <%= work_order.organization_assigned.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if work_order.bill_order %>
+                  <%= link_to work_order.bill_order.folio, bill_order_path(work_order.bill_order) %>
+                <% else %>
+                  No Facturada
+                <% end %>
+              </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer panel-footer-toolbox">
+    <div class="panel-toolbar">
+      <%= will_paginate @own_work_orders, :param_name => 'po', renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+<br>

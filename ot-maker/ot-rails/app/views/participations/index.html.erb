@@ -1,0 +1,55 @@
+<h1>Participación en Grupos</h1>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+            <th>User</th>
+            <th>Grupo</th>
+            <th>Participation type</th>
+            <th>Estado</th>
+            <th>Confirmar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @participations.each do |participation| %>
+          <tr>
+              <td><%= participation.user.name %></td>
+              <td><%= participation.organization.name %></td>
+              <td><%= participation.role %></td>
+              <td>
+                  <% if participation.state==1 %>
+                      Activo
+                  <% else %>
+                      Pendiente
+                  <% end %>
+
+              </td>
+              <td>
+                  <% if participation.state==0 %>
+                    <%= form_for(participation) do |f| %>
+                      <%= f.hidden_field :organization_id %>
+                      <%= f.hidden_field :user %>
+                      <%= f.hidden_field :role %>
+                      <%= button_tag(type: 'submit', class: 'btn btn-success') do %>
+                          <span class="glyphicon-ok glyphicon"></span>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+              </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer panel-footer-toolbox">
+    <div class="panel-toolbar">
+      <%= will_paginate @participations, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+
+<br>

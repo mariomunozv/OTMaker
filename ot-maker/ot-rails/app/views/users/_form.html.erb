@@ -1,0 +1,58 @@
+<%= form_for(@user, :html => { multipart: true }) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this organization from being saved:</h2>
+            <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+        <div class="col-xs-4">
+            <%= image_tag @user.avatar.url(:avatar), :class => "profile-photo" %>
+            <%= f.file_field :avatar, :class => "hidden" %>
+            <br>
+            <br>
+            <div class="text-center">
+                <div class="btn btn-default input-file">Subir imagen</div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="form-group hidden">
+                <%= f.label :id %>
+                <%= f.text_field :id %>
+            </div>
+            <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, :class => "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.label :lastname %>
+                <%= f.text_field :lastname, :class => "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.label :email %>
+                <%= f.text_field :email, :class => "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.label :phone %>
+                <%= f.number_field :phone, :class => "form-control" %>
+            </div>
+            <div class="actions">
+                <%= f.submit :class => "btn btn-success float-right" %>
+            </div> 
+        </div>
+    </div>
+    
+<% end %>
+
+<% content_for :script do %>
+    <script>
+        $('.input-file').click(function () {
+            $('input[type="file"]').click()
+        })
+    </script>
+<% end %>

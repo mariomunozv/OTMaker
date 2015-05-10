@@ -1,0 +1,36 @@
+<h1>Detail bill_order</h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', bill_orders_path, :class => "btn btn-link" %>
+			<%= link_to edit_bill_order_path(@bill_order), data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Edit" do %>
+	          	<span class="glyphicon glyphicon-pencil"></span>
+	        <% end %>
+			<%= link_to @bill_order, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+	          	<span class="glyphicon glyphicon-trash"></span>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered">
+			<tbody>
+							<tr>
+				  <th>Folio:</th>
+				  <td><%= @bill_order.folio %></td>
+				</tr>
+							<tr>
+				  <th>Issued:</th>
+				  <td><%= @bill_order.issued %></td>
+				</tr>
+							<tr>
+				  <th>Status:</th>
+				  <td><%= @bill_order.status %></td>
+				</tr>
+						</tbody>
+		</table>
+
+	</div>
+</div>

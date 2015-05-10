@@ -1,0 +1,82 @@
+<div>
+    <h2>Grupos</h2>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-toolbox">
+            <div class="panel-title">
+                Tus Grupos
+            </div>
+            <div class="panel-toolbar">
+                <%= link_to new_organization_path, class: "btn btn-primary", data: { tooltip: 'tooltip' }, title: "New Organization" do %>
+                    <span class="glyphicon glyphicon-plus"></span>
+                <% end %>
+            </div>    
+        </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @organizations.each do |organization| %>
+              <tr>
+                  <td><%= link_to organization.name, organization_path(organization) %></td>
+                  <td><%= organization.address %></td>
+                  <td><%= organization.phone %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer panel-footer-toolbox">
+        <div class="panel-toolbar">
+          <%= will_paginate @organizations, :param_name => 'porg', renderer: BootstrapPagination::Rails %>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-toolbox">
+            <div class="panel-title">
+                Grupos en los que participas
+            </div> 
+        </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Participación</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Encargado</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @participations.each do |participation| %>
+              <tr>
+                  <td><%= link_to participation.organization.name, organization_path(participation.organization) %></td>
+                  <td><%= participation.role %></td>
+                  <td><%= participation.organization.address %></td>
+                  <td><%= participation.organization.phone %></td>
+                  <td><%= participation.organization.user.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer panel-footer-toolbox">
+        <div class="panel-toolbar">
+          <%= will_paginate @participations, :param_name => 'ppar', renderer: BootstrapPagination::Rails %>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <br><br><br>
+</div>

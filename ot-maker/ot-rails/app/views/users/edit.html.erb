@@ -1,0 +1,17 @@
+<h1><%= @user.fullname %></h1>
+<p>Editar perfil de usuario</p>
+<br>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">Editar mis datos</div>
+		<div class="panel-toolbar">
+			<%= link_to current_user_path, :class => "btn btn-link" do %>
+				Volver
+			<% end %>
+		</div>
+	</div>
+	<div class="panel-body">
+		<%= render 'form' %>
+	</div>
+</div>

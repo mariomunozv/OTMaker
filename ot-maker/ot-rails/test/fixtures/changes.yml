@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work_order_id: 
+  user_id: 
+  code: MyString
+  title: MyString
+  description: MyString
+  bill_order_id: 
+
+two:
+  work_order_id: 
+  user_id: 
+  code: MyString
+  title: MyString
+  description: MyString
+  bill_order_id: 

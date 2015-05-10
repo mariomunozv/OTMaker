@@ -1,0 +1,44 @@
+<h1>Detail notification</h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', notifications_path, :class => "btn btn-link" %>
+			<%= link_to edit_notification_path(@notification), data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Edit" do %>
+	          	<span class="glyphicon glyphicon-pencil"></span>
+	        <% end %>
+			<%= link_to @notification, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+	          	<span class="glyphicon glyphicon-trash"></span>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered">
+			<tbody>
+							<tr>
+					<th>User:</th>
+					<td><%= @notification.user.name %></td>
+				</tr>
+							<tr>
+					<th>Work order:</th>
+					<td><%= @notification.work_order.name %></td>
+				</tr>
+							<tr>
+				  <th>Detail:</th>
+				  <td><%= @notification.detail %></td>
+				</tr>
+							<tr>
+				  <th>Status:</th>
+				  <td><%= @notification.status %></td>
+				</tr>
+							<tr>
+					<th>Notification type:</th>
+					<td><%= @notification.notification_type.name %></td>
+				</tr>
+						</tbody>
+		</table>
+
+	</div>
+</div>

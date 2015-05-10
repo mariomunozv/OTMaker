@@ -1,0 +1,15 @@
+<h1>Nuevo participante para <%= @organization.name %></h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', organization_path(@organization), :class => "btn btn-link" %>
+		</div>    
+	</div>
+	<div class="panel-body">
+
+		<%= render 'form' %>
+
+	</div>
+</div>

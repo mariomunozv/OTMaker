@@ -1,0 +1,15 @@
+<h1>New <%= singular_table_name %></h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-toolbar">
+			<%%= link_to 'Volver', <%= index_helper %>_path, :class => "btn btn-link" %>
+		</div>    
+	</div>
+	<div class="panel-body">
+
+		<%%= render 'form' %>
+
+	</div>
+</div>

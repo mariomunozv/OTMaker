@@ -1,0 +1,54 @@
+<h1>Listing changes</h1>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-heading panel-heading-toolbox">
+    <div class="panel-toolbar">
+      <%= link_to new_change_path, class: "btn btn-primary", data: { tooltip: 'tooltip' }, title: "New Change" do %>
+        <span class="glyphicon glyphicon-plus"></span>
+      <% end %>
+    </div>    
+  </div>
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+                      <th>Work order</th>
+                      <th>User</th>
+                      <th>User assigned</th>
+                      <th>Code</th>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th>Bill order</th>
+                  </tr>
+      </thead>
+
+      <tbody>
+        <% @changes.each do |change| %>
+          <tr>
+              <td><%= link_to change.work_order.id, work_order_path(change.work_order) %></td>
+              <td><%= change.user.name %></td>
+              <td><% if change.user_assigned %>
+              <%= change.user_assigned.name %>
+              <% end %></td>
+              <td><%= change.code %></td>
+              <td><%= change.title %></td>
+              <td><%= change.description %></td>
+              <td>
+                <% if change.bill_order %>
+                <%= change.bill_order.folio %>
+                <% end %>
+              </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer panel-footer-toolbox">
+    <div class="panel-toolbar">
+      <%= will_paginate @changes, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+
+<br>

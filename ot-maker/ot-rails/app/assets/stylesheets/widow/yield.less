@@ -1,0 +1,34 @@
+
+#page-content-wrapper {
+	h1, h2, h3, h4, h5, h6 {
+		color: @yield-color;
+	}
+	h2 {
+		font-size: 22px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	& > .page-title {
+		margin-left: -25px;
+		margin-right: -25px;
+		margin-top: 0px;
+		padding: 48px 30px;
+		color: #FFF;
+		margin-bottom: 0px;
+
+		&.page-title-green {
+			background-color: @yield-green;
+		}
+	}
+	& > .page-buttons {
+		margin: 0px -25px;
+		border-bottom: 1px solid @soft-line;
+		padding: 9px 25px;
+	}
+	& > .page-body {
+		margin-top: 12px;
+	}
+	& > .alert {
+		margin-top: 12px;
+	}
+}

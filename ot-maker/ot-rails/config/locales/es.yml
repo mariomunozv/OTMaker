@@ -1,0 +1,85 @@
+# ruby encoding: utf-8
+
+es: 
+  activerecord: 
+    models: 
+      user: 'Usuario'
+      organization: 'Grupo'
+      participation: 'Participación'
+      notification_type: 'Tipo de Notificación'
+      notification: 'Notificación'
+      bill_order: 'Orden de Facturación'
+      work_order: 'Orden de Trabajo'
+
+
+    attributes: 
+      user: 
+        name: 'Nombre'
+        lastname: 'Apellido'
+        email: 'Correo electrónico' 
+        password: 'Contraseña'
+        password_confirmation: 'Confirmar contraseña'
+        current_password: "Contraseña actual"
+        phone: 'Teléfono'
+
+      organization:
+        name: 'Nombre'
+        address: 'Dirección'
+        phone: 'Teléfono'
+        user: 'Encargado'
+
+      participation:
+        user:'Usuario'
+        organization:'Grupo'
+        role:'Rol'
+
+      notification_type:
+        name:'Nombre' 
+        template:'Plantilla'
+
+      notification:
+        user:'Usuario'
+        work_order:'Orden de Trabajo'
+        detail:'Detalle' 
+        status:'Estado' 
+        notification_type:'Tipo de Notificación'
+
+      bill_order:
+        folio: 'Folio'
+        issued: 'Emición'
+        status: 'Estado'
+
+      work_order:
+        code:'Código' 
+        title:'Título' 
+        description:'Descripción' 
+        file:'Archivo' 
+        user:'Usuario'
+        organization:'Grupo'
+        bill_order:'Orden de Facturación'
+    errors:
+      models:
+        work_order:
+          attributes:
+            code:
+              blank: "Debe rellenar el campo llamado código"
+            title:
+              blank: "Debe rellenar el campo Título"
+        organization:
+          attributes:
+            name:
+              blank: "El campo Nombre no puede ser vacío"
+            address:
+              blank: "El campo Dirección no puede ser vacío"
+            phone:
+              blank: "El campo Teléfono no puede ser vacío"
+        participation:
+          attributes:
+            user:
+              blank: "Debe seleccionar un usuario"
+        participation:
+          attributes:
+            role:
+              blank: "Debe ingresar el rol del usuario"
+            user:
+              blank: "Debe ingresar el correo del usuario."

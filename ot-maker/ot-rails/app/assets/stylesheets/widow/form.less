@@ -1,0 +1,30 @@
+
+.form-control {
+	&.rut {
+		display: inline;	
+		width: 50%;
+	}
+	&.dv {
+		display: inline;
+		width: 34px;
+	}
+}
+
+.form-group {
+	& > .field_with_errors {
+		background-color: #F2DEDE;
+		border-color: #EBCCD1;
+		color: #B94A48;
+		padding: 5px;
+		display: block;
+		
+		&:first-child {
+			border-top-right-radius: 4px;
+			border-top-left-radius: 4px;
+		}
+		&:last-child {
+			border-botom-right-radius: 4px;
+			border-botom-left-radius: 4px;	
+		}
+	}
+}

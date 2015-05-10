@@ -1,0 +1,56 @@
+<div class="container homepage">
+<div class="row">
+  <div class="col-md-8">
+      <br><br>
+    <%= image_tag("ot-maker-logo-color-login.png", :class => "img-responsive") %>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">Registro</div>
+      <div class="panel-body">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <% if resource.errors.messages.count %>
+        <div id="error_explanation">
+          <h4>Los siguientes errores impidieron que este Usuario fuese guardado:</h4>
+          <ul>
+              <% resource.errors.messages.each do |msg| %>
+              
+              <li><%= msg[1][0] %></li>
+              <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, :autofocus => true, :class => "form-control input-sm" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :lastname %>
+          <%= f.text_field :lastname, :class => "form-control input-sm" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :phone %>
+          <%= f.number_field :phone,  :class => "form-control input-sm" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, :class => "form-control input-sm" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, :class => "form-control input-sm" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, :class => "form-control input-sm" %>
+        </div>
+        <div><%= f.submit "Registrarse", :class => "btn btn-success float-right" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <%= render "devise/shared/links" %>     
+  </div>
+</div>
+</div>

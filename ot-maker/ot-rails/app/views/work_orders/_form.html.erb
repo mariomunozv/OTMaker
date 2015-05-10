@@ -1,0 +1,55 @@
+<%= form_for(@work_order) do |f| %>
+<% if @work_order.errors.any? %>
+<div id="error_explanation">
+    <h2>Se detectaron los siguientes porblemas:</h2>
+    <ul>
+        <% @work_order.errors.messages.each do |msg| %>
+        
+        <li><%= msg[1][0] %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<h4>Datos Generales</h4>
+<div class="form-group">
+    <%= f.label :code %>
+    <%= f.text_field :code, :class => "form-control" %>
+</div>
+<div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "form-control" %>
+</div>
+<div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, :class => "form-control" %>
+</div>
+
+<h4>Datos del solicitante</h4>
+<div class="form-group">
+    <%= f.label :organization %>
+    <%= f.collection_select :organization, Organization.all, :id, :name, prompt: true, :class => 'form-control'  %>
+</div>
+<div class="form-group">
+    <%= f.label :user %>
+    <input disabled value="<%= current_user.name+' '+current_user.lastname %>" class="form-control">
+</div>
+
+<h4>Datos de a quien se le solicita</h4>
+<div class="form-group">
+    <%= f.label :user_assigned %>
+    <%= f.collection_select :user_assigned_id, User.all, :id, :name, prompt: true, :class => 'form-control'  %>
+</div>
+<div class="form-group">
+    <%= f.label :organization_assigned_id %>
+    <%= f.collection_select :organization_assigned_id, Organization.all, :id, :name, prompt: true, :class => 'form-control'  %>
+</div>
+<% if @work_order.user_assigned == current_user %>
+<div class="form-group">
+    <%= f.label :bill_order_id %>
+    <%= f.collection_select :bill_order_id, BillOrder.all, :id, :folio, prompt: true, :class => 'form-control'  %>
+</div>
+<% end %>
+<div class="actions">
+    <%= f.submit :class => "btn btn-success" %>
+</div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work_order_id: 
+  user_id: 
+  content: MyString
+
+two:
+  work_order_id: 
+  user_id: 
+  content: MyString

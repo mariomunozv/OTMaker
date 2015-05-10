@@ -1,0 +1,120 @@
+<h1>Detail change</h1>
+<hr>
+
+<div class="panel panel-default">
+
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">
+			Datos generales
+		</div>
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', work_order_path(@change.work_order), :class => "btn btn-link" %>
+			<%= link_to edit_work_order_path(@change.work_order), data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Edit" do %>
+	          	<span class="glyphicon glyphicon-pencil"></span>
+	        <% end %>
+			<%= link_to @change.work_order, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+	          	<span class="glyphicon glyphicon-trash"></span>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+				  <th>Code:</th>
+				  <td><%= @change.code %></td>
+				</tr>
+				<tr>
+				  <th>Title:</th>
+				  <td><%= @change.title %></td>
+				</tr>
+				<tr>
+				  <th>Description:</th>
+				  <td><%= @change.description %></td>
+				</tr>
+				<tr>
+					<th>User:</th>
+					<td><%= @change.work_order.user.name %></td>
+				</tr>
+				<tr>
+					<th>Organization Asignada:</th>
+					<td><%= @change.work_order.organization_assigned.name %></td>
+				</tr>
+				<tr>
+					<th>Bill order:</th>
+					<td>
+						<% if @change.bill_order %>
+		                	<%= @change.bill_order.folio %>
+		                <% end %>
+	            	</td>
+				</tr>
+				<tr>
+					<th>Estado</th>
+					<td><%= @change.show_state %></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">
+			Archivos adjuntos
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>File</th>
+					<th>Size</th>
+					<th>Modified</th>
+					<th>Download</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td> <span class="glyphicon glyphicon-file"></span>CustomerFeedBackApr.pdf</td>
+					<td>24 kb</td>
+					<td>Mar 12, 2014 by <a href="#">Diego Jaume</a></td>
+					<td><a href="#" class="btn btn-mini btn-info"><span class="glyphicon glyphicon-download"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-warning"><span class="glyphicon glyphicon-refresh"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+				<tr>
+					<td><span class="glyphicon glyphicon-file"></span> CustomerFeedBackJan.pdf</td>
+					<td>12 kb</td>
+					<td>Mar 12, 2014 by <a href="#">Diego Jaume</a></td>
+					<td><a href="#" class="btn btn-mini btn-info"><span class="glyphicon glyphicon-download"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-warning"><span class="glyphicon glyphicon-refresh"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+				<tr>
+					<td><span class="glyphicon glyphicon-file"></span> ProductList.xls</td>
+					<td>55 kb</td>
+					<td>Mar 12, 2014 by <a href="#">Diego Jaume</a></td>
+					<td><a href="#" class="btn btn-mini btn-info"><span class="glyphicon glyphicon-download"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-warning"><span class="glyphicon glyphicon-refresh"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	
+
+
+</div>
+<div class="bs-example">
+	<div class="well">
+		<%= link_to change_restore_path(@change) do %>
+		<button type="button" class="btn btn-primary btn-lg btn-block">Restaurar Orden de Trabajo a este punto</button>
+		<% end %>
+	  
+	</div>
+</div>

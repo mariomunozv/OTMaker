@@ -1,0 +1,84 @@
+
+<h1>Bienvenido <%= current_user.name %></h1>
+<p>Enterate de lo que ha estado pasando en OT-Maker</p>
+<br>
+<div class="row">
+	<div class="col-md-7">
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		    	<div class="panel-title">Ordenes de Trabajo</div>
+		    </div>
+	  		<div class="panel-body">
+	  			<table class="table">
+					<tbody>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+						<tr>
+							<td>Noticia 1</td>
+						</tr>
+					</tbody>
+
+				</table>
+	  		</div>
+	  	</div>
+	</div>
+	<div class="col-md-5">
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		    	<div class="panel-title">Ordenes de Trabajo</div>
+		    </div>
+	  		<div class="panel-body">
+				<table class="table">
+					<tbody>
+						<% @work_orders.each do |work_order| %>
+						<tr>
+							<td><%= link_to work_order.code, work_order_path(work_order) %></td>
+				            <td><%= work_order.title %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		    	<div class="panel-title">Grupos</div>
+		    </div>
+	  		<div class="panel-body">
+				<table class="table">
+					<tbody>
+						<% @organizations.each do |organization| %>
+						<tr>
+							<td><%= link_to organization.name, organization_path(organization) %></td>
+							<td><%= organization.address %></td>
+							<td><%= organization.phone %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+</div>

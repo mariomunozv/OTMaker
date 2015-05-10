@@ -1,0 +1,36 @@
+<h1>Detail comment</h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', comments_path, :class => "btn btn-link" %>
+			<%= link_to edit_comment_path(@comment), data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Edit" do %>
+	          	<span class="glyphicon glyphicon-pencil"></span>
+	        <% end %>
+			<%= link_to @comment, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+	          	<span class="glyphicon glyphicon-trash"></span>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered">
+			<tbody>
+							<tr>
+					<th>Work order:</th>
+					<td><%= @comment.work_order.name %></td>
+				</tr>
+							<tr>
+					<th>User:</th>
+					<td><%= @comment.user.name %></td>
+				</tr>
+							<tr>
+				  <th>Content:</th>
+				  <td><%= @comment.content %></td>
+				</tr>
+						</tbody>
+		</table>
+
+	</div>
+</div>

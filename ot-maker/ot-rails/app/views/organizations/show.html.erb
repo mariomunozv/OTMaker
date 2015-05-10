@@ -1,0 +1,106 @@
+<h1>Detalle del Grupo</h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">
+			Datos generales
+		</div>
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', organizations_path, :class => "btn btn-link" %>
+			<% if @organization.user.id == current_user.id %>
+				<%= link_to edit_organization_path(@organization), data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Edit" do %>
+		          	<span class="glyphicon glyphicon-pencil"></span>
+		        <% end %>
+				<%= link_to @organization, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+		          	<span class="glyphicon glyphicon-trash"></span>
+		        <% end %>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-3">
+				<%= image_tag @organization.avatar.url(:avatar), :class => "full-width" %>
+			</div>
+			<div class="col-sm-9">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+						  <th>Nombre:</th>
+						  <td><%= @organization.name %></td>
+						</tr>
+						<tr>
+						  <th>Dirección:</th>
+						  <td><%= @organization.address %></td>
+						</tr>
+						<tr>
+						  <th>Teléfono:</th>
+						  <td><%= @organization.phone %></td>
+						</tr>
+						<tr>
+							<th>Usuario administrador:</th>
+							<td><%= @organization.user.name %></td>
+						</tr>
+					</tbody>
+				</table>		
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">
+			Participantes
+		</div>
+		<div class="panel-toolbar">
+			<% if @organization.user.id == current_user.id %>
+				<%= link_to new_participation_org_path(@organization.id), class: "btn btn-primary", data: { tooltip: 'tooltip' }, title: "New Participation" do %>
+		       		<span class="glyphicon glyphicon-plus"></span>
+		      	<% end %>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+	    <table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Usuario</th>
+					<th>Rol</th>
+					<% if @organization.user.id == current_user.id %>
+					<th>Estado</th>
+					<% end %>
+				</tr>
+			</thead>
+
+			<tbody>
+			<% @participations.each do |participation| %>
+				<% if participation.state == 1 %>
+					<tr>
+				<% else %>
+					<tr class="warning">
+				<% end %>
+				
+					<td><%= participation.user.name %></td>
+					<td><%= participation.role %></td>
+					<% if @organization.user.id == current_user.id %>
+						<td>
+						<% if participation.state == 1 %>
+							Activo
+						<% else %>
+							Pendiente
+						<% end %>
+						</td>
+					<% end %>
+				</tr>
+			<% end %>
+			</tbody>
+	    </table>
+  </div>
+  <div class="panel-footer panel-footer-toolbox">
+    <div class="panel-toolbar">
+      <%= will_paginate @participations, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<h1>Listing notifications</h1>
+<hr>
+
+<div class="panel panel-default">
+  <div class="panel-heading panel-heading-toolbox">
+    <div class="panel-toolbar">
+      <%= link_to new_notification_path, class: "btn btn-primary", data: { tooltip: 'tooltip' }, title: "New Notification" do %>
+        <span class="glyphicon glyphicon-plus"></span>
+      <% end %>
+    </div>    
+  </div>
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+                      <th>User</th>
+                      <th>Work order</th>
+                      <th>Detail</th>
+                      <th>Status</th>
+                      <th>Notification type</th>
+                  </tr>
+      </thead>
+
+      <tbody>
+        <% @notifications.each do |notification| %>
+          <tr>
+                            <td><%= notification.user.name %></td>
+                            <td><%= notification.work_order.name %></td>
+                              <td><%= notification.detail %></td>
+                              <td><%= notification.status %></td>
+                            <td><%= notification.notification_type.name %></td>
+                      </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel-footer panel-footer-toolbox">
+    <div class="panel-toolbar">
+      <%= will_paginate @notifications, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>
+
+<br>

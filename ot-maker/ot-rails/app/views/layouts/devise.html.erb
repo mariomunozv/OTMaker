@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<title>OT-Maker</title>
+		
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="wrapper" class="layout-empty">
+		
+		<br><br><br><br><br><!-- Y que pasa? -->
+
+		<%= yield %>
+
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<a href="http://www.requies.cl/" class="btn btn-link">Requies, 2015</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<script src="/js/bootstrap/transition.js"></script>
+    <script src="/js/bootstrap/alert.js"></script>
+    <script src="/js/bootstrap/button.js"></script>
+    <script src="/js/bootstrap/carousel.js"></script>
+    <script src="/js/bootstrap/collapse.js"></script>
+    <script src="/js/bootstrap/dropdown.js"></script>
+    <script src="/js/bootstrap/modal.js"></script>
+    <script src="/js/bootstrap/tooltip.js"></script>
+    <script src="/js/bootstrap/popover.js"></script>
+    <script src="/js/bootstrap/scrollspy.js"></script>
+    <script src="/js/bootstrap/tab.js"></script>
+    <script src="/js/bootstrap/affix.js"></script>
+
+    <script type="text/javascript">
+    	$('.dropdown-toggle').dropdown()  
+
+    	// Sidebar toggle
+    	$("#menu-toggle").click(function(e) {
+	        e.preventDefault()
+	        $("#wrapper").toggleClass("active")
+	    });
+    </script>
+</body>
+</html>

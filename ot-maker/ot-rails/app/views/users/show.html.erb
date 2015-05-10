@@ -1,0 +1,48 @@
+<h1><%= @user.fullname %></h1>
+<p>Perfil de usuario</p>
+<br>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-toolbox">
+				<div class="panel-title">Mis datos</div>
+				<div class="panel-toolbar">
+					<%= link_to edit_current_user_path, :class => "btn btn-default" do %>
+						<span class="glyphicon glyphicon-pencil"></span>
+					<% end %>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<%= image_tag @user.avatar.url(:avatar), :class => "profile-photo" %>
+					</div>
+					<div class="col-sm-9">
+						<table class="table">
+							<tr>
+								<th>Nombre:</th>
+								<td><%= @user.name %></td>
+							</tr>
+							<tr>
+								<th>Apellido:</th>
+								<td><%= @user.lastname %></td>
+							</tr>
+							<tr>
+								<th>Correo electrónico:</th>
+								<td><%= @user.email %></td>
+							</tr>
+							<tr>
+								<th>Teléfono:</th>
+								<td><%= @user.phone %></td>
+							</tr>
+						</table>		
+					</div>
+				</div>
+				
+			</div>
+		</div>		
+
+	</div>
+</div>

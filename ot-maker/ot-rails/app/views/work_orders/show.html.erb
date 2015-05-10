@@ -1,0 +1,202 @@
+<%= stylesheet_link_tag    "timeline", media: "all", "data-turbolinks-track" => true %>
+
+
+<h1>Detalle de Orden de Trabajo</h1>
+<hr>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">
+			Datos generales
+		</div>
+		<div class="panel-toolbar">
+			<%= link_to 'Volver', work_orders_path, :class => "btn btn-link" %>
+			<%= link_to edit_work_order_path(@work_order), data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Edit" do %>
+	          	<span class="glyphicon glyphicon-pencil"></span>
+	        <% end %>
+			<%= link_to @work_order, method: :delete, data: { confirm: 'Are you sure?' }, data: { tooltip: 'tooltip' }, class: "btn btn-default", title: "Delete" do %>
+	          	<span class="glyphicon glyphicon-trash"></span>
+	        <% end %>
+		</div>    
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+				  <th>Code:</th>
+				  <td><%= @work_order.code %></td>
+				</tr>
+				<tr>
+				  <th>Title:</th>
+				  <td><%= @work_order.title %></td>
+				</tr>
+				<tr>
+				  <th>Description:</th>
+				  <td><%= @work_order.description %></td>
+				</tr>
+				<tr>
+					<th>User:</th>
+					<td><%= @work_order.user.name %></td>
+				</tr>
+				<tr>
+					<th>Organization Asignada:</th>
+					<td><%= @work_order.organization_assigned.name %></td>
+				</tr>
+				<tr>
+					<th>Bill order:</th>
+					<td>
+						<% if @work_order.bill_order %>
+		                	<%= @work_order.bill_order.folio %>
+		                <% end %>
+	            	</td>
+				</tr>
+				<tr>
+					<th>Estado</th>
+					<td><%= @work_order.show_state %></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">
+			Archivos adjuntos
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>File</th>
+					<th>Size</th>
+					<th>Modified</th>
+					<th>Download</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td> <span class="glyphicon glyphicon-file"></span>CustomerFeedBackApr.pdf</td>
+					<td>24 kb</td>
+					<td>Mar 12, 2014 by <a href="#">Diego Jaume</a></td>
+					<td><a href="#" class="btn btn-mini btn-info"><span class="glyphicon glyphicon-download"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-warning"><span class="glyphicon glyphicon-refresh"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+				<tr>
+					<td><span class="glyphicon glyphicon-file"></span> CustomerFeedBackJan.pdf</td>
+					<td>12 kb</td>
+					<td>Mar 12, 2014 by <a href="#">Diego Jaume</a></td>
+					<td><a href="#" class="btn btn-mini btn-info"><span class="glyphicon glyphicon-download"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-warning"><span class="glyphicon glyphicon-refresh"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+				<tr>
+					<td><span class="glyphicon glyphicon-file"></span> ProductList.xls</td>
+					<td>55 kb</td>
+					<td>Mar 12, 2014 by <a href="#">Diego Jaume</a></td>
+					<td><a href="#" class="btn btn-mini btn-info"><span class="glyphicon glyphicon-download"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-warning"><span class="glyphicon glyphicon-refresh"></span></a></td>
+					<td><a href="#" class="btn btn-mini btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading panel-heading-toolbox">
+		<div class="panel-title">
+        	Linea de tiempo
+    	</div>
+    </div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+		    <ul class="timeline">
+		        <% if !@changes.blank? %>
+		          <% @changes.each_with_index do |change,index| %>
+		          	<% if index%2 ==0 %>
+		          		<li href="#">
+		          	<% else %>
+		          		<li class="timeline-inverted">
+		          	<% end %>
+		            <div class="timeline-badge <%= change.class_timeline %>"><i class="glyphicon glyphicon-<%= change.class_glyphicon %>"></i></div>
+			          <div data-index="<%= change.id %>" class="timeline-panel">
+			            <div class="timeline-heading">
+			              <h4 class="timeline-title">
+			              	<%= change.title_timeline %>
+			              </h4>
+			              <p><small class="text-muted">
+			              	<i class="glyphicon glyphicon-time"></i> 
+			              	<%= change.diference_time %>
+
+			              	by <%= change.user.name %>
+			              </small></p>
+			            </div>
+			            <div class="timeline-body">
+			              <table class="table">
+							<tbody>
+								<tr>
+								  <th>Código:</th><td><%= change.code %></td>
+								</tr>
+								<tr>
+								  <th>Título:</th><td><%= change.title %></td>
+								</tr>
+								<tr>
+								  <th>Descripción:</th><td><%= change.description %></td>
+								</tr>
+								<tr>
+									<th>Usuario:</th><td><%= change.user.name %></td>
+								</tr>
+								<tr>
+									<th>Orden de Facturación:</th>
+									<td>
+										<% if change.bill_order %>
+						                	<%= change.bill_order.folio %>
+						                <% end %>
+					            	</td>
+								</tr>
+								<tr>
+									<th>Estado</th>
+									<td>
+										<%= change.show_state %>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+			            </div>
+			          </div>
+			        </li>
+		          <% end %>
+		        <% else %>
+		          
+		        <% end %>
+
+		    </ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(".timeline-body").hide();
+	
+	$("div.timeline-panel").click(function(){
+		url_str = "/changes/"+$(this).attr("data-index");
+		window.open(url_str);
+	});
+	$("div.timeline-panel").hover(function(){
+		$(this).css('cursor', 'pointer');
+		$(this).find(".timeline-body").stop( true, true ).slideDown();
+	});
+	$("div.timeline-panel").mouseleave(function(){
+		$(this).css('cursor', 'pointer');
+		$(this).find(".timeline-body").stop( true, true ).slideUp();
+	});
+
+</script>
+
+
